@@ -34,6 +34,9 @@ class IPApiClient:
             raise ApiError("Réponse JSON invalide.")
 
     def get_my_ip(self, version=4):
+        if version not in (4, 6):
+            raise ApiError("Version IP invalide.")
+
         url = self.IPV4_URL if version == 4 else self.IPV6_URL
         data = self.__get_json(url)
 
